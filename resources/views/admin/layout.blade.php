@@ -15,8 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="/adminlte/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="/adminlte/Ionicons/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/adminlte/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    @stack('styles')
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -264,6 +263,9 @@ desired effect
                 <!--------------------------
                 | Your Page Content Here |
                 -------------------------->
+                @if (session()->has('flash'))
+                <div class="alert alert-success">{{ session('flash') }}</div>
+                @endif
                 @yield('content')
             </section>
         <!-- /.content -->
@@ -356,24 +358,10 @@ desired effect
 <script src="/adminlte/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/adminlte/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/adminlte/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="/adminlte/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+@stack('scripts')
 
 <!-- AdminLTE App -->
 <script src="/adminlte/js/adminlte.min.js"></script>
-<script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#posts-table').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-        })
-    })
-</script>
 
 </body>
 </html> 
